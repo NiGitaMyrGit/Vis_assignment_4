@@ -21,10 +21,10 @@ parser.add_argument('-r','--report_path', type=str, default='out/classification_
                     help='Path to save the classification report')
 args = parser.parse_args()
 
+weather_conditions = ['dew', 'fogsmog', 'frost', 'glaze', 'hail', 'lightning', 'rain', 'rainbow', 'rime', 'sandstorm', 'snow']
+dataset_path = "/work/cds-viz/vis_assignment4/dataset"
 # Define the weather conditions (classes)
-def load_data():
-    weather_conditions = ['dew', 'fogsmog', 'frost', 'glaze', 'hail', 'lightning', 'rain', 'rainbow', 'rime', 'sandstorm', 'snow']
-    dataset_path = "/work/cds-viz/vis_assignment4/dataset"
+def load_data(weather_conditions, dataset_path):
     # Prepare the dataset
     images = []
     labels = []
@@ -89,7 +89,7 @@ def train_model(X_train, X_test, y_train, y_test, datagen):
    
 def main():
      # Load data
-    X_train, X_test, y_train, y_test, datagen = load_data()
+    X_train, X_test, y_train, y_test, datagen = load_data(weather_conditions, dataset_path)
 
     # Train model
     report = train_model(X_train, X_test, y_train, y_test, datagen)
